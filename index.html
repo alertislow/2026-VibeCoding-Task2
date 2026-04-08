@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gleen Kuo 前端開發工程師 | 個人品牌網站</title>
-    <meta name="description" content="歡迎來到 Gleen Kuo 的個人品牌網站。這裡展示了我在前端開發領域的專業技能、精選作品集以及個人簡介，致力於透過程式碼打造絕佳的使用者體驗與網頁設計。">
+    <title>Gleen Kuo · 前端開發工程師 | 個人品牌網站</title>
+    <meta name="description" content="歡迎來到 Gleen Kuo 的個人品牌網站。這裡展示了我在前端開發領域的專業技能,精選作品集以及個人簡介，致力於透過程式碼打造絕佳的使用者體驗與網頁設計。">
     
     <style>
         /* CSS:BASE-START */
@@ -125,6 +125,32 @@
             font-size: 0.9rem;
             color: var(--text-muted);
         }
+
+        /* 通用按鈕 */
+        .btn {
+            display: inline-block;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        .btn-outline:hover {
+            background-color: rgba(0, 173, 181, 0.1);
+            transform: translateY(-2px);
+        }
         /* CSS:BASE-END */
 
         /* CSS:HERO-START */
@@ -160,8 +186,48 @@
         .section-about .about-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            align-items: center;
+            gap: 40px;
+        }
+
+        .section-about .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .section-about .about-text-block p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+
+        .section-about .strength-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .section-about .strength-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .section-about .strength-item::before {
+            content: "✦";
+            color: var(--secondary-color);
+        }
+
+        .section-about .about-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .section-about .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            box-shadow: 20px 20px 0px rgba(0, 173, 181, 0.2);
         }
         /* CSS:ABOUT-END */
 
@@ -198,14 +264,19 @@
         @media (min-width: 768px) {
             .hero-content h1 { font-size: 3.5rem; }
             .nav-list { gap: 30px; }
-            .section-title { font-size: 2.5rem; }
+            .section-title { font-size: 2.5rem; text-align: left; }
             
+            /* About Section Desktop Layout */
             .section-about .about-wrapper {
                 flex-direction: row;
-                text-align: left;
+                align-items: center;
             }
-            .about-image { flex: 1; }
-            .about-text { flex: 1; }
+            .section-about .about-content {
+                flex: 1.2;
+            }
+            .section-about .about-image {
+                flex: 0.8;
+            }
 
             .section-skills .skills-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -226,7 +297,7 @@
     <div class="page">
         <header class="site-header">
             <div class="container nav">
-                <div class="logo">Glenn Kuo · Frontend Dev</div>
+                <div class="logo">Gleen Kuo · Frontend Dev</div>
                 <nav>
                     <ul class="nav-list">
                         <li><a href="#hero" class="nav-link">首頁</a></li>
@@ -242,7 +313,7 @@
         <main>
             <section id="hero" class="section section-hero">
                 <div class="container hero-content">
-                    <h1>Glenn Kuo | 打造極致的前端體驗</h1>
+                    <h1>Gleen Kuo | 打造極致的前端體驗</h1>
                     <p>這裡是個人網站的主視覺區。之後會放上一句話自我介紹、核心職稱（例如 Senior Frontend Developer）以及行動呼籲按鈕。</p>
                     <p><strong>開發者提示：</strong>之後會用 Section SDD 的 Prompt 產生正式文案與版面，再把整個 section 貼回來取代這一區。</p>
                     <a href="#projects" class="hero-cta">瀏覽作品集</a>
@@ -250,16 +321,27 @@
             </section>
             <section id="about" class="section section-about" aria-labelledby="about-heading">
                 <div class="container">
-                    <h2 id="about-heading" class="section-title">關於我（預留插槽）</h2>
                     <div class="about-wrapper">
-                        <div class="about-image">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Glenn Kuo 的個人專業形象照" loading="lazy">
-                        </div>
-                        <div class="about-text">
-                            <div class="placeholder-text">
-                                <p>這裡目前是 About 區的占位內容。未來會在此介紹個人背景、開發哲學與職涯目標。</p>
-                                <p>之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。</p>
+                        <div class="about-content">
+                            <h2 id="about-heading" class="section-title">關於我</h2>
+                            <div class="about-text-block">
+                                <p>你好！我是 Gleen，一名專注於 React 與現代前端技術棧的開發者。目前我投入於軟體開發與技術教學，擅長將複雜的後端邏輯轉化為直覺、流暢的使用者介面，並熱衷於透過接案挑戰解決多元的商業問題。</p>
+                                <p>我做事的風格始終堅持「溝通先行」，因為我深信清楚的需求對齊是專案成功的基石。我喜歡教學，也喜歡在開發過程中把邏輯講清楚、將程式碼寫得優雅且易於維護，確保每一行程式碼都能為產品創造價值。</p>
                             </div>
+                            
+                            <ul class="strength-list">
+                                <li class="strength-item"><strong>卓越的跨部門溝通</strong>：能將技術語言轉化為商業語言，確保開發目標與產品方向一致。</li>
+                                <li class="strength-item"><strong>現代前端架構設計</strong>：擅長使用 React / TypeScript 打造高效、可擴展的組件庫與應用程式。</li>
+                                <li class="strength-item"><strong>問題導向的解決力</strong>：熱衷於優化網頁效能與使用者體驗，解決開發中的疑難雜症。</li>
+                            </ul>
+
+                            <div class="about-actions">
+                                <a href="#projects" class="btn btn-primary">查看作品集</a>
+                                <a href="#contact" class="btn btn-outline">聯絡我</a>
+                            </div>
+                        </div>
+                        <div class="about-image">
+                            <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=800&q=80" alt="正在專注編寫程式碼的前端開發工程師" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -289,10 +371,10 @@
                         <div class="placeholder-text">
                             <p>這裡目前是 Contact 區的占位內容。未來會包含聯絡表單或社群媒體連結。</p>
                             <p>之後會用 Section SDD 的 Prompt 產生新的 section，請把新的 section 程式碼整段貼在這兩個註解中間，完全取代現在這一區。</p>
-                        </div>
+                        </div>  
                         <div style="margin-top: 20px;">
                             <a href="mailto:hello@example.com" class="contact-link">Email: hello@example.com</a>
-                            <a href="https://github.com/yourname" class="contact-link" target="_blank">GitHub: @Gleen Kuo</a>
+                            <a href="https://github.com/yourname" class="contact-link" target="_blank">GitHub: @gleenkuo</a>
                             <a href="https://www.linkedin.com/in/yourname" class="contact-link" target="_blank">LinkedIn</a>
                             <a href="tel:+886900000000" class="contact-link">Phone: +886-900-000-000</a>
                         </div>
